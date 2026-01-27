@@ -11,6 +11,7 @@ public:
     uint pushBack(uint newValue);
     void print();
     bool deleteByValue(uint valueToDelete);
+    bool deleteByValueV2(uint valueToDelete);
 };
 
 #endif // SIMPLELINKEDLIST_H

@@ -65,3 +65,36 @@ bool SimpleLinkedList::deleteByValue(uint valueToDelete){
     }
     return hasBeenDeleted;
 }
+
+bool SimpleLinkedList::deleteByValueV2(uint valueToDelete){
+    if(this->head == nullptr) return false;
+
+    bool hasBeenDeleted = false;
+    while(this->head != nullptr
+        && this->head->value == valueToDelete) {
+
+        // temporal para borrar
+        Node* tmpToDelete = this->head;
+        // reasignar la cabeza
+        this->head = this->head->next;
+        // borrar la referencia
+        delete tmpToDelete;
+        hasBeenDeleted = true;
+    }
+
+    Node* it = this->head;
+    while(it->next != nullptr){
+        if(it->next->value == valueToDelete){
+            Node*tmpToDelete = it->next;
+            it->next = tmpToDelete->next;
+            delete tmpToDelete;
+            hasBeenDeleted = true;
+        }
+        else {
+            it = it->next;
+        }
+    }
+
+    return hasBeenDeleted;
+
+}
