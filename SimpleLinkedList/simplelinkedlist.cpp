@@ -3,13 +3,16 @@
 using std::cout;
 using std::endl;
 
-SimpleLinkedList::SimpleLinkedList() {
+SimpleLinkedList::SimpleLinkedList(string name) {
     this->head = nullptr;
+    this->length = 0;
+    this->name = name;
 }
 
 uint SimpleLinkedList::pushBack(uint newValue){
     if(this->head == nullptr){
         this->head = new Node(newValue);
+        incrementSize();
         return newValue;
     }
 
@@ -19,11 +22,13 @@ uint SimpleLinkedList::pushBack(uint newValue){
     }
     // here we are at the last element
     temp->next = new Node(newValue);
-
+    incrementSize();
     return newValue;
 }
 
 void SimpleLinkedList::print(){
+    cout << "List Name: "<< this->name << endl;
+    cout << "List Length: "<< this->length << endl;
     if(this->head == nullptr){
         cout << "Empty list" << endl;
         return;
@@ -37,7 +42,7 @@ void SimpleLinkedList::print(){
         temp = temp->next;
     }
 
-    cout << "nullptr" << endl;
+    cout << "nullptr" << endl << endl;
 }
 
 
@@ -79,6 +84,7 @@ bool SimpleLinkedList::deleteByValueV2(uint valueToDelete){
         this->head = this->head->next;
         // borrar la referencia
         delete tmpToDelete;
+        decrementSize();
         hasBeenDeleted = true;
     }
 
@@ -89,6 +95,7 @@ bool SimpleLinkedList::deleteByValueV2(uint valueToDelete){
             it->next = tmpToDelete->next;
             delete tmpToDelete;
             hasBeenDeleted = true;
+            decrementSize();
         }
         else {
             it = it->next;
@@ -96,5 +103,22 @@ bool SimpleLinkedList::deleteByValueV2(uint valueToDelete){
     }
 
     return hasBeenDeleted;
+}
 
+uint SimpleLinkedList::pushFront(uint newValue){
+    Node* newNode = new Node(newValue);
+    newNode->next = this->head;
+    this->head = newNode;
+    incrementSize();
+    return newValue;
+}
+
+uint SimpleLinkedList::insertAt(uint newValue, int pos){
+    // validaciones
+    // 1. posiciones
+    if(pos < 0 || pos > this->length + 1){
+        throw 400;
+    }
+    return 1;
+    // actual code
 }
