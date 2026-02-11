@@ -15,6 +15,7 @@ public:
     void pushFront(int newValue);
     void deleteBack();
     void deleteFront();
+    int searchFromTail(int value);
 };
 
 #endif // DOUBLELL_H

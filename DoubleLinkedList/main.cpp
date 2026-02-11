@@ -1,4 +1,8 @@
+#include<iostream>
 #include "doublell.h"
+
+using std::cout;
+using std::endl;
 
 int main(){
     DoubleLL dll;
@@ -12,5 +16,9 @@ int main(){
     dll.print();
     dll.deleteBack();
     dll.print();
+    int index = dll.searchFromTail(-5);
+    if(index > 0)
+        cout << "Found at index:" << index;
+    cout << "Not found";
     return 0;
 }

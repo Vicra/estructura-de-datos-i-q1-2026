@@ -73,4 +73,17 @@ void DoubleLL::deleteBack(){
     return;
 }
 
+int DoubleLL::searchFromTail(int value){
+    NodeDLL *it = this->tail;
+    int index = 0;
+    while(it!=nullptr){
+        if(it->value == value){
+            return index;
+        }
+        it = it->prev;
+        index ++;
+    }
+    return -1;
+}
+
 void DoubleLL::deleteFront(){}
